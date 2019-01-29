@@ -1,0 +1,130 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}"/>
+</head>
+<body>
+	<div class="message">
+	  Sorry, your browser does not support CSS Grid. 😅
+	</div>
+	<section class="section">
+	  <h1>Hellraiser Gallery</h1>
+	  <div class="grid">
+	    <div class="item">
+	    	<img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=">
+	      <div class="item__details">
+	        jelly-o brownie sweet
+	      </div>
+	    </div>
+	    <div class="item item--large">
+	    	<img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=">
+	    	<!-- <img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop="> -->
+	      <div class="item__details">
+	        Muffin jelly gingerbread 
+	      </div>
+	    </div>
+	    <div class="item item--medium">
+	    	<img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=">
+	      <div class="item__details">
+	        sesame snaps chocolate
+	      </div>
+	    </div>
+	    <div class="item item--large">
+	      <div class="item__details">
+	        Oat cake
+	      </div>
+	    </div>
+	    <div class="item item--full">
+	    	<img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=">
+	      <div class="item__details">
+	         jujubes cheesecake
+	      </div>
+	    </div>
+	    <div class="item item--medium">
+	      <div class="item__details">
+	        Dragée pudding brownie
+	      </div>
+	    </div>
+	    <div class="item item--large">
+	      <div class="item__details">
+	        Oat cake
+	      </div>
+	    </div>
+	    <div class="item">
+	      <div class="item__details">
+	        powder toffee
+	      </div>
+	    </div>
+	    <div class="item item--medium">
+	      <div class="item__details">
+	        pudding cheesecake
+	      </div>
+	    </div>
+	    <div class="item item--large">
+	      <div class="item__details">
+	        toffee bear claw 
+	      </div>
+	    </div>
+	    <div class="item">
+	      <div class="item__details">
+	        cake cookie croissant
+	      </div>
+	    </div>
+	    <div class="item item--medium">
+	      <div class="item__details">
+	        liquorice sweet roll
+	      </div>
+	    </div>
+	    <div class="item item--medium">
+	      <div class="item__details">
+	        chocolate marzipan
+	      </div>
+	    </div>
+	    <div class="item item--large">
+	      <div class="item__details">
+	        danish dessert lollipop
+	      </div>
+	    </div>
+	    <div class="item">
+	      <div class="item__details">
+	        sugar plum dragée
+	      </div>
+	    </div>
+	  </div>
+	</section>
+
+	<!-- The Modal -->
+	<div class="modal" id="myModal">
+	  <span class="close">&times;</span>
+	  <!-- <img class="modal-content" id="img01">
+	  <div id="caption"></div> -->
+	</div>
+
+	<script type="text/javascript">
+		let x = document.getElementsByClassName('item');
+		var i;
+		var modal = document.getElementById('myModal');
+		for (i = 0; i < x.length; i++){
+			x[i].addEventListener("click",function(){
+		  		modal.style.display = "block";
+		  		// modalImg.src = this.src;
+		  		// captionText.innerHTML = this.alt;
+			});
+		}
+		// image.onclick = function(){
+		//   modal.style.display = "block";
+		//   // modalImg.src = this.src;
+		//   // captionText.innerHTML = this.alt;
+		// }
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() { 
+		  modal.style.display = "none";
+		}
+	</script>
+</body>
+</html>
