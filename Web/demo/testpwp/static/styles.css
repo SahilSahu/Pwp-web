@@ -147,7 +147,7 @@ img {
   color: #444;
 }
 
-.modal {
+.modal-css {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 20; /* Sit on top */
