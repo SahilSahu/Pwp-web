@@ -9,3 +9,12 @@ def index(request):
     # return HttpResponse("Hello, world. You're at the polls index.")
     context={'1':2}
     return render(request, 'testpwp/modal.html',context)
+
+def home(request):
+	context={'1':1}
+	return render(request, 'testpwp/home.html',context)
+
+
+def profile(request):
+	context={'1':1}
+	return render(request, 'testpwp/profiling.html',context)

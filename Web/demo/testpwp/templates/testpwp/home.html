@@ -1,0 +1,811 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="{% static 'land/img/logo.png' %}">
+  
+  <!-- meta character set -->
+  <meta charset="UTF-8">
+  <!-- Site Title -->
+  <title>PWP_21</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    
+    <link rel="stylesheet" href="{% static 'land/css/main.css' %}">
+    <!--
+    Smooth Scroll JS
+    ============================================= -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      // Add smooth scrolling to all links
+      $("a").on('click', function(event) {
+
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+
+          // Store hash
+          var hash = this.hash;
+
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 800, function(){
+       
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+    });
+    </script>
+      <style>
+      @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+      @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900&subset=latin-ext');
+
+      * {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+      }
+
+      /*body {
+          padding: 100px 0;
+      }
+*/
+      img {
+          width: 100%;
+          vertical-align: middle;
+        
+      }
+
+      .blog-item img {
+        display: block;
+      }
+
+      .blog-item a {
+          display: flex;
+          padding: 50px;
+          overflow: hidden;
+          align-items: center;
+          max-width: 1000px;
+          margin: auto;
+          color: #333;
+          font-family: 'Lato', sans-serif;
+          font-size: 16px;
+          border-radius: 6px;
+          margin-bottom: 50px;
+          text-decoration: none;
+          -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+      }
+
+      .blog-item a:hover {
+          box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.2);
+          -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+      }
+
+      .blog-item .icon {
+          width: 35%;
+          object-fit: cover;
+          margin-right: 50px;
+          border-radius: 6px;
+          overflow: hidden;
+          box-shadow: 0 15px 26px rgba(0, 0, 0, 0.4);
+      }
+
+      .blog-item .content {
+          width: 65%;
+      }
+
+      .blog-item .content .title {
+          font-size: 21px;
+          text-transform: capitalize;
+          color: #25aae1;
+          font-weight: 600;
+          font-family: 'Lato', sans-serif;
+      }
+
+
+
+      .blog-item .content .title .blog-date {
+          font-size: 12px;
+          margin-left: 20px;
+          color: #333;
+          font-family: 'Lato', sans-serif;
+      }
+
+      .blog-item .content .title .blog-date:before {
+          content: '/';
+          color: #2bb673;
+          font-size: 25px;
+          top: auto;
+          position: relative;
+          margin-right: 10px;
+      }
+
+      .blog-item .content .rounded {
+          margin-left: 0;
+          margin-top: 10px;
+          margin-bottom: 10px;
+      }
+
+      .blog-item .item-arrow {
+          height: 20px;
+          width: 15%;
+          position: relative;
+          text-align: center;
+          font-size: 35px;
+          left: 0;
+          -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+      }
+
+      .blog-item a:hover > .item-arrow {
+          /*padding-left: 40px;*/
+          color: #25aae1;
+          left: 30px;
+          -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+      }
+
+      .rounded {
+          width: 70px;
+          height: 5px;
+          border-radius: 6px;
+          background-image: linear-gradient(to right, #25aae1, #40e495);
+          /* background: #2bb769; */
+          margin-left: 0;
+          margin-top: 10px;
+          margin-bottom: 10px;
+      }
+
+      @media screen and (max-width: 768px){
+
+          .blog-item .content {
+              width: 100%;
+              margin-top: 35px;
+          }
+
+          .blog-item .content .title {
+              font-size: 18px;
+          }
+
+          .blog-item .item-arrow {
+              margin: auto;
+          }
+
+          .blog-item .icon {
+              width: 100%;
+          }
+
+          .blog-item .icon img {
+              width: 100%;
+              height: 150px;
+              object-fit: cover;
+          }
+
+          .blog-item {
+              width: 92%;
+              margin: auto;
+          }
+
+          .blog-item a {
+              display: block;
+              padding: 30px;
+          }
+
+      }
+      /* Full-width input fields */
+      /*:focus{
+         outline:0;
+      }
+      input[type=text], input[type=password] {
+          width: 100%;
+          padding: 5px;
+          margin: 8px 0;
+          display: inline;
+          border: none;
+          border-bottom: 1px solid #ccc;
+          box-sizing: border-box;
+          transition: all 1s ease;
+      }
+      input[type=text]:focus, input[type=password]:focus{
+          box-shadow: 1px 2px 0px grey;
+          transform: translateY(-5px);
+      }*/
+      /* Extra styles for the cancel button */
+      /*.cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+      }*/
+
+      /* Center the image and position the close button */
+      /*.imgcontainer {
+          text-align: center;
+          margin: 24px 0 12px 0;
+          position: relative;
+      }
+
+      img.avatar {
+          width: 40%;
+          border-radius: 50%;
+      }
+
+      .container {
+          padding: 16px;
+      }
+
+      span.psw {
+          float: right;
+          padding-top: 16px;
+      }*/
+
+      /* The Modal (background) */
+      /*.modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: hidden; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+          padding-top: 60px;
+      }*/
+
+      /* Modal Content/Box */
+      .modal-content {
+          background-color: #fefefe;
+          margin: 10% auto 25% auto; /* 5% from the top, 15% from the bottom and centered */
+          border: 1px solid #888;
+          border-radius: 10px;
+          width: 40%; /* Could be more or less, depending on screen size */
+      }
+
+      /* The Close Button (x) */
+      .close {
+          position: absolute;
+          right: 25px;
+          top: 0;
+          color: #000;
+          font-size: 35px;
+          font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+          color: red;
+          cursor: pointer;
+      }
+
+      /* Add Zoom Animation */
+      .animate {
+          -webkit-animation: animatezoom 0.6s;
+          animation: animatezoom 0.6s
+      }
+
+      @-webkit-keyframes animatezoom {
+          from {-webkit-transform: scale(0)} 
+          to {-webkit-transform: scale(1)}
+      }
+          
+      @keyframes animatezoom {
+          from {transform: scale(0)} 
+          to {transform: scale(1)}
+      }
+
+      /* Change styles for span and cancel button on extra small screens */
+      @media screen and (max-width: 300px) {
+          span.psw {
+             display: block;
+             float: none;
+          }
+          .cancelbtn {
+             width: 100%;
+          }
+      }
+      </style>
+  </head>
+  <body>
+    <div id="top"></div>
+    <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- Start Header Area -->
+    <header class="default-header">
+      <div class="sticky-header">
+        <div class="container">
+          <div class="header-content d-flex justify-content-between align-items-center">
+            <div class="logo">
+              <a href="#top" class="smooth"><!-- <img src="{% static 'land/img/logo.png' %}" alt="" height="100" width="100"> -->PWP</a>
+            </div>
+            <div class="right-bar d-flex align-items-center">
+              <nav class="d-flex align-items-center">
+                <ul class="main-menu">
+                  <li><a href="#top">Home</a></li>
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#team">Team</a></li>
+                  <li><a href="#contact" target="_blank">Examples</a></li>
+                  <p><a href="/profiling/" target="_blank" class="login-button" style="width:auto;"><font color="white" size="3px">Profiling</font></a></p><!-- onclick="document.getElementById('id01').style.display='block'"  -->
+                </ul>
+                <a href="#" class="mobile-btn"><span class="lnr lnr-menu"></span></a>
+              </nav>
+              
+              <div class="header-social d-flex align-items-center">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End Header Area -->
+    <!-- <div id="id01" class="modal">
+      
+      <form class="modal-content animate" method="POST" action="/login">
+        {% csrf_token %}
+        <div class="imgcontainer">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3jckKIP74XqmpQnmJThxp-nSGMcXFuZVisp12G5tJ4P1Cw0ERVA" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input type="text" name="username" id="username" placeholder="Username" required>
+
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Password" id="password" name="password" required>
+            
+          <button class="login-button" type="submit">Login</button>
+        </div>
+      </form>
+    </div> -->
+
+    <script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>
+    <!-- Start Banner Area -->
+    <section class="banner-area relative skewed">
+      <div class="overlay overlay-bg"></div>
+      <div class="container">
+        <div class="row fullscreen justify-content-center align-items-center">
+          <div class="col-lg-8">
+            <div class="banner-content text-center">
+              <p class="text-uppercase text-white">Transforming Plastic Waste</p>
+              <h1 class="text-uppercase text-white">Plastic Waste Profiling.</h1>
+              <a href="#about" class="primary-btn banner-btn">Explore Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Banner Area -->
+    <!-- Start About Area -->
+    <section id="about" class="section-full">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="section-title text-center">
+              <p class="text-uppercase"><h2 class="h1"><b>About Plastic Waste Profiling</b><!-- <hr> --></h2>
+              <br></p>
+              <h3><b>Problem Statement</b><br><hr><br>
+
+This problem statement looks at creating a citizen app which can capture and contribute pictures  of garbage dumped at a collection point and litter . A back end algorithm can then  analyze the brands of packaging and track and identify foot print of the manufacturers.
+
+
+<br><br><b>Problem Dimensions</b><hr><br>
+This problem has the following dimensions<br><br>
+1 -> Capturing the images of the garbage dumps or collections points. The algorithm should be able to, based on the image, identify the discarded packaging of common commodity items like chips, biscuits, cold drinks etc.<br><br>
+2 -> Based on the identified brand, over a duration or over a set of locations be able generate a plastic and litter profile of the manufacturer
+<br><br>
+For example, the common litter elements include wrappers of chocolates, packets of kurkure or lays or empty bottles of cold drinks which are being used and the packaging being disposed off. By analyzing these products, the algorithm should be able to create a plastic waste and litter profile of different brands.</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </div>
+    </section>
+    <!-- Start Team member Area -->
+    <section id="team" class="section-full pb-150 gray-bg">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="product-area-title text-center">
+              <h2 class="h1">Creative People <hr></h2>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-6">
+            <div class="single-member">
+              <div class="thumb relative" style="background: url({% static 'land/img/t1.jpg' %});">
+                <div class="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
+                  <p class="text-white">This article is floated so we could have a good view of our skillset.</p>
+                  <div class="line"></div>
+                  <div class="social d-flex align-items-center justify-content-center">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="desc text-center">
+                <h5 class="text-uppercase"><a href="#">Milan Hazra</a></h5>
+                <p>Mastermind (Leader)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-sm-6">
+            <div class="single-member">
+              <div class="thumb relative" style="background: url({% static 'land/img/t1.jpg' %});">
+                <div class="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
+                  <p class="text-white">This article is floated so we could have a good view of our skillset.</p>
+                  <div class="line"></div>
+                  <div class="social d-flex align-items-center justify-content-center">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="desc text-center">
+                <h5 class="text-uppercase"><a href="#">Chirag Bellara</a></h5>
+                <p>Core Developer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-sm-6">
+            <div class="single-member">
+              <div class="thumb relative" style="background: url({% static 'land/img/t3.jpg' %});">
+                <div class="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
+                  <p class="text-white">This article is floated so we could have a good view of our skillset.</p>
+                  <div class="line"></div>
+                  <div class="social d-flex align-items-center justify-content-center">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="desc text-center">
+                <h5 class="text-uppercase"><a href="#">Anurag Shelar</a></h5>
+                <p>Mithila fan</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-6 col-sm-6">
+            <div class="single-member">
+              <div class="thumb relative" style="background: url({% static 'land/img/t2.jpg' %});">
+                <div class="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
+                  <p class="text-white">This article is floated so we could have a good view of our skillset.</p>
+                  <div class="line"></div>
+                  <div class="social d-flex align-items-center justify-content-center">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="desc text-center">
+                <h5 class="text-uppercase"><a href="#">Sahil Sahu</a></h5>
+                <p>Timepass karne wala</p>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-lg-4 col-sm-6">
+            <div class="single-member">
+              <div class="thumb relative" style="background: url({% static 'land/img/t3.jpg' %});">
+                <div class="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
+                  <p class="text-white">This article is floated so we could have a good view of our skillset.</p>
+                  <div class="line"></div>
+                  <div class="social d-flex align-items-center justify-content-center">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="desc text-center">
+                <h5 class="text-uppercase"><a href="#">Chirag Bellara</a></h5>
+                <p>Senior Core Developer</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="single-member">
+              <div class="thumb relative" style="background: url({% static 'land/img/t4.jpg' %});">
+                <div class="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
+                  <p class="text-white">This article is floated so we could have a good view of our skillset.</p>
+                  <div class="line"></div>
+                  <div class="social d-flex align-items-center justify-content-center">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="desc text-center">
+                <h5 class="text-uppercase"><a href="#">Ujala Jha</a></h5>
+                <p>Senior Core Developer</p>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+    <!-- End Team member Area -->
+
+    <!-- Start Contact Area -->
+    <section id="contact" class="section-full">
+      <div class="container">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="section-title text-center">
+              <p class="text-uppercase"><h2 class="h1"><b>Latest from Blog</b><hr></h2>
+              <br></p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-lg-6 mt-30">
+            <p>Dramatically reintermediate effective applications after high-payoff core competencies. Authoritatively optimize collaborative benefits for error-free communities. Dramatically reintermediate effective applications after high-payoff core competencies. Authoritatively optimize collaborative benefits for error-free communities.</p>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="address mt-20">
+                  <h6 class="text-uppercase mb-15">Physical Address</h6>
+                  <p>Samarth Complex,<br> A-201, Jawahar nagar road, <br> Mumbai  - 400 062</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="address mt-20">
+                  <h6 class="text-uppercase mb-15">WEb Contact</h6>
+                  <a href="tel:9769831397">+91 9769 831 397</a> <br>
+                  <a href="tel:0000">012 (88) 017 25 656 565</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-30">
+            <form id="myForm" method="post" class="contact-form">
+              <div class="single-input color-2 mb-10">
+                <input type="text" name="fname" placeholder="Full Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Full Name'" required>
+              </div>
+              <div class="single-input color-2 mb-10">
+                <input type="email" name="email" placeholder="Email Address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required>
+              </div>
+              <div class="single-input color-2 mb-10">
+                <input type="text" name="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'" required>
+              </div>
+
+              <div class="single-input color-2 mb-10">
+                <textarea name="message" placeholder="Type your message here..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Type your message here...'" required></textarea>
+              </div>
+              <div class="d-flex justify-content-end"><button class="mt-10 primary-btn d-inline-flex text-uppercase align-items-center">Send Message<span class="lnr lnr-arrow-right"></span></button></div>
+              <div class="alert"></div>
+            </form>
+          </div>
+        </div> -->
+
+        <div class="blog-item">
+            <a href="/home/" target="_blank">
+                <div class="icon">
+                    <img src="http://apeuk.org/wp-content/uploads/2017/02/coca-cola-beach-cut.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">Lorem Ipsum, dizgi ve baskı  <span class="blog-date">27.12.2017</span></div>
+                    <div class="rounded"></div>
+
+                    <p>
+                        Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı
+                        bilinmeyen bir matbaacının bir hurufat numune kitabı...
+                    </p>
+                </div>
+
+                <div class="item-arrow">
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="blog-item">
+            <a href="/home/" target="_blank">
+                <div class="icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo4kQ2ZJZvZawCSMsz7qvrDepZQfI0BAjQy5ObWiGhygNGPwK5" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">Lorem Ipsum, dizgi ve baskı  <span class="blog-date">27.12.2017</span></div>
+                    <div class="rounded"></div>
+
+                    <p>
+                        Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı
+                        bilinmeyen bir matbaacının bir hurufat numune kitabı...
+                    </p>
+                </div>
+
+                <div class="item-arrow">
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="blog-item">
+            <a href="/home/" target="_blank">
+                <div class="icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4R2GXXTJ99dII088iMPAD7WAkvBcDCuCqqO5l_8iX2FzyQwNx" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">Lorem Ipsum, dizgi  <span class="blog-date">27.12.2017</span></div>
+                    <div class="rounded"></div>
+
+                    <p>
+                        Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı
+                        bilinmeyen bir matbaacının bir hurufat numune kitabı...
+                    </p>
+                </div>
+
+                <div class="item-arrow">
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="blog-item">
+            <a href="/home/" target="_blank">
+                <div class="icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo4kQ2ZJZvZawCSMsz7qvrDepZQfI0BAjQy5ObWiGhygNGPwK5" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">Lorem Ipsum, dizgi ve baskı  <span class="blog-date">27.12.2017</span></div>
+                    <div class="rounded"></div>
+
+                    <p>
+                        Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı
+                        bilinmeyen bir matbaacının bir hurufat numune kitabı...
+                    </p>
+                </div>
+
+                <div class="item-arrow">
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- <button type="button" class="btn btn-outline-primary btn-rounded btn-lg btn-block">click for more</button> -->
+      </div>
+    </section>
+    <!-- End Contact Area -->
+    
+    <footer class="section-full">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-sm-6">
+            <div class="single-footer-widget">
+              <h6 class="text-white text-uppercase mb-20">About PWP</h6>
+              <p>The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look at a presentation and understand the message. It has come to a point </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="single-footer-widget">
+              <h6 class="text-white text-uppercase mb-20">Navigation Links</h6>
+              <div class="d-flex">
+                <ul class="footer-nav">
+                  <li><a href="#top">Home</a></li>
+                  <li><a href="#about">Problem Statement</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                  <li><a href="#team">Team</a></li>
+                </ul>
+                <!--ul class="ml-30 footer-nav">
+                  <li><a href="#">Team</a></li>
+                  <li><a href="#">Pricing</a></li>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul-->
+              </div>
+            </div>
+          </div>
+          <hr style="height: 20vh;width: 1px;background: white;color: white;">
+          <div class="col-lg-4 col-sm-6">
+            <div class="single-footer-widget">
+              <h6 class="text-white text-uppercase mb-20">Newsletter</h6>
+              
+              <div id="mc_embed_signup">
+                <form target="_blank" novalidate action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&id=92a4423d01" method="get" class="subscription relative d-flex justify-content-center">
+                  <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required>
+                  <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="">
+                  </div>
+                  <button type="submit" class="newsletter-btn" name="subscribe"><span class="lnr lnr-location"></span></button>
+                  <!--div class="info"></div-->
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--div class="col-lg-3 col-sm-6">
+            <div class="single-footer-widget">
+              <h6 class="text-white text-uppercase mb-20">Instafeed</h6>
+              <ul class="instafeed d-flex flex-wrap">
+                <li><img src="img/i1.jpg" alt=""></li>
+                <li><img src="img/i2.jpg" alt=""></li>
+                <li><img src="img/i3.jpg" alt=""></li>
+                <li><img src="img/i4.jpg" alt=""></li>
+                <li><img src="img/i5.jpg" alt=""></li>
+                <li><img src="img/i6.jpg" alt=""></li>
+                <li><img src="img/i7.jpg" alt=""></li>
+                <li><img src="img/i8.jpg" alt=""></li>
+              </ul>
+            </div>
+          </div-->
+        </div>
+        
+        <div class="footer-bottom d-flex justify-content-between align-items-center">
+          <p class="footer-text m-0">Copyright &copy; 2018  |  All rights reserved to <a href="#">PWP21.</a> Designed by <a href="#">Dolor_Silith</a>.</p>
+          <div class="footer-social d-flex align-items-center">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-behance"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--script src="js/vendor/jquery-2.2.4.min.js"></script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="{% static 'land/js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'land/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'land/js/jquery.sticky.min.js' %}"></script>
+    <script src="{% static 'land/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'land/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'land/js/main.js' %}"></script>
+    <script type="text/javascript">
+      // ===== Scroll to Top ==== 
+      $(window).scroll(function() {
+          if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+              $('#return-to-top').fadeIn(200);    // Fade in the arrow
+          } else {
+              $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+          }
+      });
+      $('#return-to-top').click(function() {      // When arrow is clicked
+          $('body,html').animate({
+              scrollTop : 0                       // Scroll to top of body
+          }, 500);
+      });
+    </script>
+  </body>
+</html>
