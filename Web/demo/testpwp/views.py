@@ -61,9 +61,9 @@ for i in range(len(dom_class)):
       dom_class[i][j] = "Something else"
 
 print(dom_class)
-def index(request):
+def modal(request):
     # return HttpResponse("Hello, world. You're at the polls index.")
-    context={'1':2}
+    
     count_individual = []
     # count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin = 0,0,0,0,0,0,0,0,0,0,0
     for i in range(len(dom_class)):
@@ -80,7 +80,7 @@ def index(request):
       count_Kin = dom_class[i].count('kinley')
       count_individual.append([count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin])
     print(count_individual)
-
+    context={'count_individual':count_individual}
     return render(request, 'testpwp/modal.html',context)
 
 def home(request):

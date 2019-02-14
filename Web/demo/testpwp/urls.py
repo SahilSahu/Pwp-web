@@ -5,6 +5,6 @@ app_name = 'testpwp'
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^home/$',views.index, name='index'),
+    url(r'^modal/$',views.modal, name='modal'),
     url(r'^profiling/$',views.profile, name='profile')
 ]
