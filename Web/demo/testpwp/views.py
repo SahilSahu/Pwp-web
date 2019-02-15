@@ -19,7 +19,7 @@ def get_specifics(key):
 	total_contri=0
 	# plas_average_contribution,wrap_average_contribution=0,0
 	for i in result_Pla.values():
-	  count_individual.append([i["detectionClasses"][key]])
+	  count_individual.append(i["detectionClasses"][key])
 	  individual_contri.append(i["detectionScore"][key])
 	  count_overall += i["detectionClasses"][key]
 	  total_contri += sum(i["detectionScore"][key])
@@ -47,7 +47,7 @@ def get_specifics_brands(key):
 	total_contri=0
 	# plas_average_contribution,wrap_average_contribution=0,0
 	for i in result_Bra.values():
-	  count_individual.append([i["detectionClasses"][key]])
+	  count_individual.append(i["detectionClasses"][key])
 	  individual_contri.append(i["detectionScore"][key])
 	  count_overall += i["detectionClasses"][key]
 	  total_contri += sum(i["detectionScore"][key])
@@ -113,5 +113,10 @@ def home(request):
 
 def profile(request):
 	# count_individual_P,count_individual_P,P_individual_cont,W_individual_cont,count_plas,count_wrap,avg_pl,avg_wr = basic_attrs()
-	context={'1':1}
+	average_contributions=json.dumps([acntr_p,acntr_w,acntr_k,acntr_ty,acntr_B])
+	total_counts = json.dumps([c_p,c_w,c_k,c_ty,c_B])
+
+	individual_p = json.dumps(i_p)
+	individual_w = json.dumps(i_w)
+	context={'average_contributions':average_contributions,'total_counts':total_counts,'individual_p':individual_p,'individual_w':individual_w}
 	return render(request, 'testpwp/profiling.html',context)

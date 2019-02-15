@@ -1,4 +1,6 @@
-<html>
+{% extends 'testpwp/basenav.html' %}
+{% load staticfiles %}
+<!-- <html>
 <head>
 <link rel="stylesheet" href="https://www.cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -8,7 +10,7 @@
 <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> 
 <title>Profiling</title>
 <style type="text/css">
   .morris-hover {
@@ -56,7 +58,7 @@
       <br><hr><br>
       <div class="col-md-8">
         <div id="area-chart"></div>
-      </div> -->
+      </div> 
       <div class="col-md-8">
         <div id="line-chart2"></div>
       </div>
@@ -195,3 +197,122 @@
   </script>
 </body>
 </html>
+ -->
+ {% block content %}
+ <!DOCTYPE html>
+ <html>
+ <head>
+   <title>Profiling</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+ </head>
+ <body>
+  <br><br><br><br>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-9 col-md-8 col-lg-2 col-xl-12">
+        <canvas id="bar-chart"></canvas>
+      </div>
+    </div>
+    <br><hr>
+    <div class="row">
+      <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5" style="float: none;margin-left: auto;margin-right: auto;">
+        <canvas id="pie-chart"></canvas>
+      </div>
+    </div>
+    <br><hr>
+    <div class="row">
+      <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8" style="float: none;margin-left: auto;margin-right: auto;">
+        <canvas id="bar-chart-grouped"></canvas>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var data_contri = {{ average_contributions|safe }};
+    var data_count = {{ total_counts|safe }};
+    // var data_ipw = {{ individual_pw|safe }};
+    // console.log( data_ipw );
+    // console.log(data);
+    var i_p = {{ individual_p|safe }};
+    var i_w = {{ individual_w|safe }};
+    console.log(i_w);
+    new Chart(document.getElementById("bar-chart"), {
+        type: 'horizontalBar',
+        data: {
+          labels: ["Plastic", "Wrapper", "Kurkure", "Too_Yumm", "Bisleri"],
+          datasets: [
+            {
+              label: "Total (Counts)",
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+              data: data_contri
+            }
+          ]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Major Contributions'
+          }
+        }
+    });
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'pie',
+        data: {
+          labels: ["Plastic", "Wrapper", "Kurkure", "Too_Yumm", "Bisleri"],
+          datasets: [{
+            label: "Total Counts",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: data_count
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Frequency'
+          }
+        }
+    });
+    new Chart(document.getElementById("bar-chart-grouped"), {
+        type: 'bar',
+        data: {
+          labels: ["image1", "image1", "image1", "image1"],
+          datasets: [
+            {
+              label: "Plastic",
+              backgroundColor: "#3e95cd",
+              data: i_p
+            }, {
+              label: "Wrapper",
+              backgroundColor: "#8e5ea2",
+              data: i_w
+            }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Population growth (millions)'
+          },
+          scales: {
+                  yAxes: [{
+                      display: true,
+                      ticks: {
+                          suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                          // OR //
+                          beginAtZero: true   // minimum value will be 0.
+                      }
+                  }]
+              }
+        }
+
+    });
+  </script>
+ </body>
+ </html>
+ {% endblock %}
