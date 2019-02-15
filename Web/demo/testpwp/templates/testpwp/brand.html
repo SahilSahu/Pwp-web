@@ -1,4 +1,6 @@
+{% extends 'testpwp/basenav.html' %}
 {% load staticfiles %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,12 +130,13 @@
   </style>
 </head>
 <body>
+  
   <section id="gallery">
     <div class="container">
       <div id="image-gallery">
         <div class="row">
           {% for items in image %}
-          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+          <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image">
             <div class="img-wrapper">
               <a href="{% static items %}"><img src="{% static items %}" class="img-responsive"></a>
               <div class="img-overlay">
@@ -292,3 +295,4 @@
   </script>
 </body>
 </html>
+{% endblock %}
