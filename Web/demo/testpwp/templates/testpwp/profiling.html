@@ -46,38 +46,47 @@
         <div id="bar-chart"></div>
       </div>
       <br><hr><br>
-      <div class="col-md-12">
+      <div class="col-md-4">
         <div id="donut-chart"></div>
       </div>
       <br><hr><br>
-      <div class="col-md-8">
+      <!-- <div class="col-md-8">
         <div id="line-chart"></div>
       </div>
       <br><hr><br>
       <div class="col-md-8">
         <div id="area-chart"></div>
+      </div> -->
+      <div class="col-md-8">
+        <div id="line-chart2"></div>
       </div>
-      
     </div>
   </section>
   <script type="text/javascript">
     $(document).ready(function() {
       barChart();
-      lineChart();
-      areaChart();
+      // lineChart();
+      // areaChart();
       donutChart();
-
+      lineChart2();
       $(window).resize(function() {
         window.barChart.redraw();
-        window.lineChart.redraw();
-        window.areaChart.redraw();
+        // window.lineChart.redraw();
+        // window.areaChart.redraw();
         window.donutChart.redraw();
+        // window.lineChart2.redraw();
       });
     });
     var count = {{count|safe}};
     console.log(count);
     var count_per = {{count_per|safe}};
     console.log(count_per);
+    var dom_class = {{dom_class|safe}};
+    console.log(dom_class)
+    var gt_40 = {{gt_40|safe}};
+    console.log(gt_40)
+    var count_individual = {{ count_individual|safe }};
+    console.log(count_individual)
     function barChart() {
       window.barChart = Morris.Bar({
         element: 'bar-chart',
@@ -149,14 +158,39 @@
       element: 'donut-chart',
       data: [
         {label: "Plastic", value: Math.round(count_per[0])},
+        {label: "Kurkure", value: Math.round(count_per[1])},
         {label: "Wrapper", value: Math.round(count_per[2])},
         {label: "Bottle", value: Math.round(count_per[3])},
-        {label: "Kurkure", value: Math.round(count_per[1])},
+        {label: "Pepsi", value: Math.round(count_per[4])},
+        {label: "Bisleri", value: Math.round(count_per[5])},
+        {label: "Bailey", value: Math.round(count_per[6])},
         {label: "Coca-Cola", value: Math.round(count_per[7])}
       ],
       resize: true,
       redraw: true
     });
+    }
+    function lineChart2() {
+      window.lineChart = Morris.Bar({
+        element: 'line-chart2',
+
+        data: [
+          { y: dom_class[0], a:gt_40[0][0] , b: gt_40[0][1]},
+          { y: dom_class[1], a:gt_40[1][0] , b: gt_40[1][1]},
+          { y: dom_class[2], a:gt_40[2][0] , b: gt_40[2][1]},
+          // { y: '2009', a:gt_40[0][0] , b: gt_40[0][1] },
+          // { y: '2010', a:gt_40[0][0] , b: gt_40[0][1] },
+          // { y: '2011', a:gt_40[0][0] , b: gt_40[0][1] },
+          // { y: '2012', a:gt_40[0][0] , b: gt_40[0][1] }
+        ],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Most Contribution', '2nd most contribution'],
+        lineColors: ['#1e88e5','#ff3321'],
+        lineWidth: '3px',
+        resize: true,
+        redraw: true
+      });
     }
   </script>
 </body>

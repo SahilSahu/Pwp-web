@@ -6,7 +6,7 @@ import json
 from django.shortcuts import render, get_object_or_404
 
 
-detection_classes = [[1,3,3,1,1,1,1,1,2,3,2,1,1],[2,3,1,1,1,3,3,1,1,1,1,1,8,1,10],[1,1,1,2,3,3,1,2,3,3,1,1,8,8,3,2,1,1,1,3,8,2,1,2,2,8,3,1,8,8,2,1,8,1,8,2,9,8]]
+detection_classes = [[8,3,3,1,1,1,1,1,2,3,2,1,1],[2,3,1,1,1,3,3,1,1,1,1,1,8,1,10],[1,1,1,2,3,3,1,2,3,3,1,1,8,8,3,2,1,1,1,3,8,2,1,2,2,8,3,1,8,8,2,1,8,1,8,2,9,8]]
 
 detection_score = [[9.0574878e-01, 7.0590609e-01, 1.4935657e-01, 1.4761624e-01, 2.4734005e-02,
  2.1228779e-02, 1.4216424e-02, 8.2495036e-03, 7.5826286e-03, 7.0797699e-03
@@ -64,24 +64,67 @@ print(dom_class)
 def modal(request):
     # return HttpResponse("Hello, world. You're at the polls index.")
     
-    count_individual = []
-    # count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin = 0,0,0,0,0,0,0,0,0,0,0
-    for i in range(len(dom_class)):
-      count_p = dom_class[i].count('Plastic')
-      count_k = dom_class[i].count('kurkure')
-      count_w = dom_class[i].count('wrapper')
-      count_b = dom_class[i].count('bottle')
-      count_ps = dom_class[i].count('pepsi')
-      count_Bis = dom_class[i].count('Bisleri')
-      count_Bl = dom_class[i].count('Bailey')
-      count_C = dom_class[i].count('Coca-Cola')
-      count_c = dom_class[i].count('cardboad')
-      count_plb = dom_class[i].count('plastic-bottle')
-      count_Kin = dom_class[i].count('kinley')
-      count_individual.append([count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin])
-    print(count_individual)
-    context={'count_individual':count_individual}
+    # count_individual = []
+    # # count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin = 0,0,0,0,0,0,0,0,0,0,0
+    # for i in range(len(dom_class)):
+    #   count_p = dom_class[i].count('Plastic')
+    #   count_k = dom_class[i].count('kurkure')
+    #   count_w = dom_class[i].count('wrapper')
+    #   count_b = dom_class[i].count('bottle')
+    #   count_ps = dom_class[i].count('pepsi')
+    #   count_Bis = dom_class[i].count('Bisleri')
+    #   count_Bl = dom_class[i].count('Bailey')
+    #   count_C = dom_class[i].count('Coca-Cola')
+    #   count_c = dom_class[i].count('cardboad')
+    #   count_plb = dom_class[i].count('plastic-bottle')
+    #   count_Kin = dom_class[i].count('kinley')
+    #   count_individual.append([count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin])
+    # print(count_individual)
+    import os
+
+    # image=[]
+    # path = os.getcwd()
+    # print(path)
+    path = os.chdir("C://Users/Pc/Desktop/Pwp-web/Web/demo/testpwp/static/image")
+    files = os.listdir(path)
+    # print()
+    image = ["image/"+i for i in files if i.endswith('.jpg')]
+    print(image)
+    context={'image':image}
     return render(request, 'testpwp/modal.html',context)
+
+def brand(request):
+    # return HttpResponse("Hello, world. You're at the polls index.")
+    
+    # count_individual = []
+    # # count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin = 0,0,0,0,0,0,0,0,0,0,0
+    # for i in range(len(dom_class)):
+    #   count_p = dom_class[i].count('Plastic')
+    #   count_k = dom_class[i].count('kurkure')
+    #   count_w = dom_class[i].count('wrapper')
+    #   count_b = dom_class[i].count('bottle')
+    #   count_ps = dom_class[i].count('pepsi')
+    #   count_Bis = dom_class[i].count('Bisleri')
+    #   count_Bl = dom_class[i].count('Bailey')
+    #   count_C = dom_class[i].count('Coca-Cola')
+    #   count_c = dom_class[i].count('cardboad')
+    #   count_plb = dom_class[i].count('plastic-bottle')
+    #   count_Kin = dom_class[i].count('kinley')
+    #   count_individual.append([count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin])
+    # print(count_individual)
+    import os
+
+    # image=[]
+    # path = os.getcwd()
+    # print(path)
+    path = os.chdir("C://Users/Pc/Desktop/Pwp-web/Web/demo/testpwp/static/image")
+    files = os.listdir(path)
+    # print()
+    image = ["image/"+i for i in files if i.endswith('.jpg')]
+    print(image)
+    context={'image':image}
+    return render(request, 'testpwp/brand.html',context)
+
 
 def home(request):
 	context={'1':1}
@@ -159,10 +202,29 @@ def profile(request):
 	  count_plb += dom_class[i].count('plastic-bottle')
 	  count_Kin += dom_class[i].count('kinley')
 
-	print("\n\nFollowing is the analysis =>\n\nPlastic->",count_p,"\nkurkure->",count_k,"\nwrapper->",count_w,"\nbottle->",count_b,"\npepsi->",count_ps,"\nBisleri->",count_Bis,
-	"\nBailey->",count_Bl,"\nCoca-Cola->",count_C,"\ncardboard->",count_c,"\nplastic-bottle->",count_plb,"\nkinley->",count_Kin)
-	total_count=count_p+count_k+count_w+count_b+count_ps+count_Bis+count_Bl+count_C+count_c+count_plb+count_Kin
 	count=json.dumps([count_p,count_k,count_w,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin])
-	count_per=json.dumps([(count_p*100/total_count),count_k*100/total_count,count_w*100/total_count,count_b*100/total_count,count_ps*100/total_count,count_Bis*100/total_count,count_Bl*100/total_count,count_C*100/total_count,count_c*100/total_count,count_plb*100/total_count,count_Kin*100/total_count])
-	context={'count':count,'count_per':count_per}
+	total_count=count_p+count_k+count_w+count_b+count_ps+count_Bis+count_Bl+count_C+count_c+count_plb+count_Kin
+	count_per=json.dumps([(count_p*100/total_count),count_k*100/total_count,count_w*100/total_count,count_b*100/total_count,count_ps*100/total_count,count_Bis*100/total_count,count_Bl*100/total_count,count_C*100/total_count,count_c*100/total_count,count_plb*100/total_count,count_Kin*100/total_count])  
+	count_individual = []
+    # count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin = 0,0,0,0,0,0,0,0,0,0,0
+	for i in range(len(dom_class)):
+	  count_p = dom_class[i].count('Plastic')
+	  count_k = dom_class[i].count('kurkure')
+	  count_w = dom_class[i].count('wrapper')
+	  count_b = dom_class[i].count('bottle')
+	  count_ps = dom_class[i].count('pepsi')
+	  count_Bis = dom_class[i].count('Bisleri')
+	  count_Bl = dom_class[i].count('Bailey')
+	  count_C = dom_class[i].count('Coca-Cola')
+	  count_c = dom_class[i].count('cardboad')
+	  count_plb = dom_class[i].count('plastic-bottle')
+	  count_Kin = dom_class[i].count('kinley')
+	  count_individual.append([count_p,count_w,count_k,count_b,count_ps,count_Bis,count_Bl,count_C,count_c,count_plb,count_Kin])
+    # print(count_individual)
+
+	# print("\n\nFollowing is the analysis =>\n\nPlastic->",count_p,"\nkurkure->",count_k,"\nwrapper->",count_w,"\nbottle->",count_b,"\npepsi->",count_ps,"\nBisleri->",count_Bis,
+	# "\nBailey->",count_Bl,"\nCoca-Cola->",count_C,"\ncardboard->",count_c,"\nplastic-bottle->",count_plb,"\nkinley->",count_Kin)
+	
+	
+	context={'count':count,'count_per':count_per,'dom_class':dom_class,'gt_40':gt_40,'count_individual':count_individual}
 	return render(request, 'testpwp/profiling.html',context)
